@@ -1,6 +1,15 @@
 package com.spring.tutoriasEDU.planes;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.spring.start.juega.Juega;
 import com.spring.tutoriasEDU.Curso.Curso;
+import com.spring.tutoriasEDU.enmarca.Enmarca;
 import com.spring.tutoriasEDU.tutores.Tutor;
 
 import jakarta.persistence.Column;
@@ -10,6 +19,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
 
@@ -32,7 +42,10 @@ public class Plan {
 	@JoinColumn(name="FK_CURSO")
 	private Curso curso;
 	
-	
+	@OneToMany(mappedBy = "plan")
+	@Cascade(CascadeType.ALL)
+	@JsonManagedReference
+    private Set<Enmarca> enmarcar = new HashSet<>();
 	
 	public Curso getCurso() {
 		return curso;
@@ -69,6 +82,14 @@ public class Plan {
 	@Override
 	public String toString() {
 		return "Plan [id=" + id + ", nombre=" + nombre + ", tutor=" + tutor + ", curso=" + curso + "]";
+	}
+
+	public Set<Enmarca> getEnmarcar() {
+		return enmarcar;
+	}
+
+	public void setEnmarcar(Set<Enmarca> enmarcar) {
+		this.enmarcar = enmarcar;
 	}
 	
 	
