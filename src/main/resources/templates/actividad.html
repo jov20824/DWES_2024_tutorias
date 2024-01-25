@@ -18,22 +18,17 @@
 		
 			<div class="card bg-light mb-3" style="max-width: 18rem;">
 			  <div class="card-header">
-				  	<span th:text="${plan.id}" ></span>
+				  	<span th:text="${actividad.id}" ></span>
 			  </div>
 			  <div class="card-body">
-				<h5 class="card-title"><span th:text="${plan.nombre}" ></span></h5>
+				<h5 class="card-title"><span th:text="${actividad.nombre}" ></span></h5>
 				<p class="card-text">
 					<ul class="list-group">
 					  <li class="list-group-item list-group-item-action list-group-item-warning list-group-item d-flex justify-content-between align-items-center">
-						Tutoría: <span th:text="${plan.tutor?.nombre}" ></span>
+						Obligatoria: <span th:text="${actividad.obligatoria}" ></span>
 					  </li>
 					  <li class="list-group-item list-group-item-action list-group-item-warning list-group-item d-flex justify-content-between align-items-center">
-						Curso: <span th:text="${plan.curso?.nombre}" ></span>
-					  </li>
-					  <li class="list-group-item list-group-item-action list-group-item-warning list-group-item d-flex justify-content-between align-items-center">
-		                <ul>
-		                    <li th:each="enmarcar : ${plan.enmarcar}" th:text="${enmarcar.actividad.nombre}"></li>
-		                </ul>
+						Curso: <span th:text="${actividad.descripcion}" ></span>
 					  </li>
 					</ul>
 				</p>

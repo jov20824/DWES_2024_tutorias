@@ -16,9 +16,12 @@ insert into tutor (nombre,email,plan) values ('Maria','maria@educastur.org',3);
 insert into tutor (nombre,email,plan) values ('Marta','marta@educastur.org',4);
 insert into tutor (nombre,email,plan) values ('Pedro','pedro@educastur.org',5);
 insert into tutor (nombre,email,plan) values ('Lucia','lucia@educastur.org',6);
-
-
-
+insert into actividad (nombre,obligatoria,descripcion) values ('Sindromín',true,'Ayudar al ciego a bajar las escaleras sin que se mate');
+insert into actividad (nombre,obligatoria,descripcion) values ('Pirar',false,'Ir a comer el pinchu con Pablo y Luis');
+insert into actividad (nombre,obligatoria,descripcion) values ('Tallerucu Valnalon',true,'La asistencia es obligatoria. Es vuestra obligacion venir a clase y ounto, eso no vamos a discutirlo.');
+insert into enmarca (actividad_id,plan_id,fecha) values (1,1,'02/03/2024');
+insert into enmarca (actividad_id,plan_id,fecha) values (2,1,'02/03/2024');
+insert into enmarca (actividad_id,plan_id,fecha) values (2,3,'01/02/2024');
 
 
 

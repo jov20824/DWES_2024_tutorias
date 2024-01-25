@@ -7,7 +7,6 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.spring.start.juega.Juega;
 import com.spring.tutoriasEDU.Curso.Curso;
 import com.spring.tutoriasEDU.enmarca.Enmarca;
 import com.spring.tutoriasEDU.tutores.Tutor;

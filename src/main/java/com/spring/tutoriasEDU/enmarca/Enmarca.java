@@ -1,9 +1,6 @@
 package com.spring.tutoriasEDU.enmarca;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.spring.start.juega.JuegaKey;
-import com.spring.start.plataforma.Plataforma;
-import com.spring.start.videojuego.Videojuego;
 import com.spring.tutoriasEDU.actividades.Actividad;
 import com.spring.tutoriasEDU.planes.Plan;
 
@@ -20,7 +17,7 @@ public class Enmarca {
 	
 	@ManyToOne
 	@MapsId("idActividad")
-	@JoinColumn(name="actividades_id")
+	@JoinColumn(name="actividad_id")
 	@JsonBackReference
 	private Actividad actividad;
 	
@@ -30,5 +27,39 @@ public class Enmarca {
 	@JsonBackReference
 	private Plan plan;
 	
-	private fecha;
+	private String fecha;
+
+	public EnmarcaKey getId() {
+		return id;
+	}
+
+	public void setId(EnmarcaKey id) {
+		this.id = id;
+	}
+
+	public Actividad getActividad() {
+		return actividad;
+	}
+
+	public void setActividad(Actividad actividad) {
+		this.actividad = actividad;
+	}
+
+	public Plan getPlan() {
+		return plan;
+	}
+
+	public void setPlan(Plan plan) {
+		this.plan = plan;
+	}
+
+	public String getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
+	}
+	
+	
 }

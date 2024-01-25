@@ -24,6 +24,7 @@
 					  <th scope="col">Nombre</th>
 					  <th scope="col">Tutor</th>
 					  <th scope="col">Curso</th>
+					  <th scope="col">Actividad</th>
 					  <th scope="col">Eliminar</th>
 					</tr>
 				  </thead>
@@ -38,6 +39,11 @@
 					  	<span th:text="${plan.tutor?.nombre}">Tutor</span>
 					  </td>
 					  <td th:text="${plan.curso?.nombre}">Curso</td>
+					  <td>
+		                <ul>
+		                    <li th:each="enmarcar : ${plan.enmarcar}" th:text="${enmarcar.actividad.nombre}"></li>
+		                </ul>
+		              </td>
 					  <td><a th:if="${plan.tutor == null}" class="badge badge-pill badge-danger" href="" th:href="@{~/plan/del/{id}(id = ${plan.id})}">eliminar</a></td>
 					</tr>
 				  </tbody>
