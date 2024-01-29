@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.tutoriasEDU.Curso.CursoDao;
+import com.spring.tutoriasEDU.actividades.ActividadDao;
 import com.spring.tutoriasEDU.tutores.Tutor;
 import com.spring.tutoriasEDU.tutores.TutorDAO;
 
@@ -32,6 +33,9 @@ public class PlanController {
 	
 	@Autowired
 	TutorDAO tutorDao;
+	
+	@Autowired
+	ActividadDao actividadDao;
 	
 	@GetMapping("/plan")
 	public ModelAndView tutorias() {
@@ -69,8 +73,12 @@ public class PlanController {
 	public ModelAndView addPlan() {
 				
 		ModelAndView model = new ModelAndView();
-		model.setViewName("formPlan");
+		
 		model.addObject("plan", new Plan());
+		model.addObject("cursos", cursoDao.findAll());
+		model.addObject("tutores", tutorDao.getTutoresNoEnlazados());
+		model.addObject("actividad",actividadDao.findAll());
+		model.setViewName("formPlan");
 		
 		return model;
 	}	
@@ -89,7 +97,7 @@ public class PlanController {
 			model.addObject("plan", planazo.get());
 			model.addObject("cursos", cursoDao.findAll());
 			model.addObject("tutores", tutorDao.getTutoresNoEnlazados());
-
+			model.addObject("actividad",actividadDao.findAll());
 			model.setViewName("formPlan");
 		}
 		else model.setViewName("redirect:/plan");	
