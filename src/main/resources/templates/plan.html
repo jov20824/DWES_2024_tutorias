@@ -31,9 +31,7 @@
 						Curso: <span th:text="${plan.curso?.nombre}" ></span>
 					  </li>
 					  <li class="list-group-item list-group-item-action list-group-item-warning list-group-item d-flex justify-content-between align-items-center">
-		                <ul>
-		                    <li th:each="enmarcar : ${plan.enmarcar}" th:text="${enmarcar.actividad.nombre}"></li>
-		                </ul>
+		                Actividades:<li th:each="enmarcar : ${plan.enmarcar}" th:text="${enmarcar.actividad.nombre}"></li>
 					  </li>
 					</ul>
 				</p>

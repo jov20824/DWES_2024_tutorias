@@ -2,6 +2,7 @@ package com.spring.tutoriasEDU.planes;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,7 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.tutoriasEDU.Curso.CursoDao;
+import com.spring.tutoriasEDU.actividades.Actividad;
 import com.spring.tutoriasEDU.actividades.ActividadDao;
+import com.spring.tutoriasEDU.enmarca.Enmarca;
+import com.spring.tutoriasEDU.enmarca.EnmarcaDao;
 import com.spring.tutoriasEDU.tutores.Tutor;
 import com.spring.tutoriasEDU.tutores.TutorDAO;
 
@@ -36,6 +40,9 @@ public class PlanController {
 	
 	@Autowired
 	ActividadDao actividadDao;
+	
+	@Autowired
+	EnmarcaDao enmarcaDao;
 	
 	@GetMapping("/plan")
 	public ModelAndView tutorias() {
@@ -73,11 +80,12 @@ public class PlanController {
 	public ModelAndView addPlan() {
 				
 		ModelAndView model = new ModelAndView();
-		
-		model.addObject("plan", new Plan());
+		Plan plan = new Plan();
+		model.addObject("plan", plan);
 		model.addObject("cursos", cursoDao.findAll());
 		model.addObject("tutores", tutorDao.getTutoresNoEnlazados());
 		model.addObject("actividad",actividadDao.findAll());
+		
 		model.setViewName("formPlan");
 		
 		return model;
@@ -92,13 +100,15 @@ public class PlanController {
 		ModelAndView model = new ModelAndView();
 		
 		Optional<Plan> planazo = planDao.findById(id);
+		
 		if(planazo.isPresent()) {
-			
-			model.addObject("plan", planazo.get());
+			Plan plan = planazo.get();
+			model.addObject("plan", plan);
 			model.addObject("cursos", cursoDao.findAll());
 			model.addObject("tutores", tutorDao.getTutoresNoEnlazados());
 			model.addObject("actividad",actividadDao.findAll());
 			model.setViewName("formPlan");
+			planDao.save(plan);
 		}
 		else model.setViewName("redirect:/plan");	
 		
@@ -154,7 +164,13 @@ public class PlanController {
 	
 		Tutor tutor = plan.getTutor();
 		tutor.setPlan(plan);
-		planDao.save(plan);
+		
+		Plan planGuardado = planDao.save(plan);
+		
+		for (Enmarca enmarca : plan.getEnmarcar()) {
+	        enmarca.setPlan(planGuardado);
+	        enmarcaDao.save(enmarca);
+	    }
 		
 		ModelAndView model = new ModelAndView();
 		model.setViewName("redirect:/plan");	

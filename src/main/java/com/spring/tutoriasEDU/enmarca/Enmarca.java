@@ -6,6 +6,9 @@ import com.spring.tutoriasEDU.planes.Plan;
 
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MapsId;
@@ -13,27 +16,27 @@ import jakarta.persistence.MapsId;
 @Entity
 public class Enmarca {
 	
-	@EmbeddedId private EnmarcaKey id;
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private long id;
 	
 	@ManyToOne
-	@MapsId("idActividad")
 	@JoinColumn(name="actividad_id")
 	@JsonBackReference
 	private Actividad actividad;
 	
 	@ManyToOne
-	@MapsId("idPlan")
 	@JoinColumn(name="plan_id")
 	@JsonBackReference
 	private Plan plan;
 	
 	private String fecha;
 
-	public EnmarcaKey getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(EnmarcaKey id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
