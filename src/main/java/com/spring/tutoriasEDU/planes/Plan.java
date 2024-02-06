@@ -11,7 +11,6 @@ import com.spring.tutoriasEDU.Curso.Curso;
 import com.spring.tutoriasEDU.enmarca.Enmarca;
 import com.spring.tutoriasEDU.tutores.Tutor;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
